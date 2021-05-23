@@ -44,7 +44,7 @@ def main(token: str):
                 if not os.path.isdir(f"code/{repo.name}"):
                     git("clone", repo.ssh_url)
                 else:
-                    git("pull", "origin", repo.default_branch, cwd=f"code/{repo.name}")
+                    git("pull", "origin", "--ff-only", repo.default_branch, cwd=f"code/{repo.name}")
             except Exception as e:
                 failures.append((repo, e))
         if "next" in raw_response.links:
